@@ -1,0 +1,3 @@
+weather_app/weather_secrets.py
+__pycache__/
+db.sqlite3

@@ -1,0 +1,39 @@
+{% extends 'weather_app/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="card weather-card">
+        <div class="card-header text-center">
+            <h2>Weather Information</h2>
+        </div>
+        <div class="card-body">
+            <div class="text-center mb-4">
+                <img src="{{data.icon}}" alt="Weather Icon" class="weather-icon">
+                <h5>{{data.condition}}</h5>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Location:</strong> {{data.location}}</li>
+                <li class="list-group-item"><strong>Region:</strong> {{data.region}}</li>
+                <li class="list-group-item"><strong>Local Time:</strong> {{data.time}}</li>
+                <li class="list-group-item"><strong>Time Zone:</strong> {{data.timezone}}</li>
+                <li class="list-group-item"><strong>Latitude:</strong> {{data.latitude}}</li>
+                <li class="list-group-item"><strong>Longitude:</strong> {{data.longitude}}</li>
+                <li class="list-group-item"><strong>Temperature:</strong> {{data.temperature_c}}&#8451; / {{data.temperature_f}}&#8457;</li>
+                <li class="list-group-item"><strong>Feels Like:</strong> {{data.feels_like_c}}&#8451; / {{data.feels_like_f}}&#8457;</li>
+                <li class="list-group-item"><strong>Wind:</strong> {{data.wind_kph}} kph ({{data.wind_mph}} mph), {{data.wind_direction}}</li>
+                <li class="list-group-item"><strong>Humidity:</strong> {{data.humidity}}%</li>
+                <li class="list-group-item"><strong>Cloud Cover:</strong> {{data.cloud}}%</li>
+                <li class="list-group-item"><strong>Precipitation:</strong> {{data.precip_mm}} mm</li>
+                <li class="list-group-item"><strong>Pressure:</strong> {{data.pressure_mb}} mb</li>
+                <li class="list-group-item"><strong>UV Index:</strong> {{data.uv}}</li>
+                <li class="list-group-item"><strong>Visibility:</strong> {{data.visibility_km}} km ({{data.visibility_miles}} miles)</li>
+                <li class="list-group-item"><strong>Last Updated:</strong> {{data.last_updated}}</li>
+                <li class="list-group-item"><strong>Heat Index:</strong> {{data.heat_index_c}}&#8451; / {{data.heat_index_f}}&#8457;</li>
+                <li class="list-group-item"><strong>Wind Gust:</strong> {{data.gust_kph}} kph ({{data.gust_mph}} mph)</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
