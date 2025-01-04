@@ -1,0 +1,25 @@
+{% extends 'weather_app/base.html' %}
+
+{% block content %}
+
+    <h1>Weather</h1>
+    <p>Enter a city name to get the weather</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="city" placeholder="Enter city name">
+        <div>
+            <input type="checkbox" id="current" name="current">
+            <label for="current">Current</label>
+        </div>
+        <div>
+            <input type="checkbox" id="hourly" name="hourly">
+            <label for="hourly">Hourly Forecast</label>
+        </div>
+        <div>
+            <input type="number" id="days" name="days" min="1" max="10">
+            <label for="days">Number of days (1-10)</label> <br>
+        <button type="submit">Submit</button>
+    </form>
+
+{% endblock content %}

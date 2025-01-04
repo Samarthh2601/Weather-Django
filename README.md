@@ -1,1 +1,1 @@
-Basic django weather app that focuses solely on external REST-API integration with django apps
+Basic django weather app that focuses solely on an external weather REST-API integration with this app

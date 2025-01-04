@@ -1,0 +1,83 @@
+{% extends 'weather_app/current.html' %}
+
+
+{% block extension %}
+
+<div class="container my-4">
+    <h1 class="text-center mb-4">Weather Forecast</h1>
+
+    <div class="accordion" id="dailyForecast">
+        {% for day in data.forecast %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading{{ loop.index }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ loop.index }}" aria-expanded="false" aria-controls="collapse{{ loop.index }}">
+                    {{ day.date }} - {{ day.condition }}
+                </button>
+            </h2>
+            <div id="collapse{{ loop.index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ loop.index }}"
+                 data-bs-parent="#dailyForecast">
+                <div class="accordion-body">
+                    <img src="{{ day.icon }}" alt="{{ day.condition }}" class="me-2">
+                    <ul class="list-unstyled">
+                        <li><strong>Max Temp:</strong> {{ day.max_temp_c }}°C ({{ day.max_temp_f }}°F)</li>
+                        <li><strong>Min Temp:</strong> {{ day.min_temp_c }}°C ({{ day.min_temp_f }}°F)</li>
+                        <li><strong>Avg Temp:</strong> {{ day.avg_temp_c }}°C ({{ day.avg_temp_f }}°F)</li>
+                        <li><strong>Max Wind:</strong> {{ day.max_wind_kph }} kph ({{ day.max_wind_mph }} mph)</li>
+                        <li><strong>Precipitation:</strong> {{ day.total_precip_mm }} mm ({{ day.total_precip_in }} in)</li>
+                        <li><strong>Chance of Rain:</strong> {{ day.daily_chance_of_rain }}%</li>
+                        <li><strong>Snow:</strong> {{ day.total_snow_cm }} cm ({{ day.total_snow_in }} in)</li>
+                        <li><strong>Avg Visibility:</strong> {{ day.avg_visibility_km }} km ({{ day.avg_visibility_miles }} miles)</li>
+                        <li><strong>Avg Humidity:</strong> {{ day.avg_humidity }}%</li>
+                        <li><strong>Sunrise:</strong> {{ day.sunrise }}</li>
+                        <li><strong>Sunset:</strong> {{ day.sunset }}</li>
+                        <li><strong>Moonrise:</strong> {{ day.moonrise }}</li>
+                        <li><strong>Moonset:</strong> {{ day.moonset }}</li>
+                        <li><strong>Moon Phase:</strong> {{ day.moon_phase }}</li>
+                        <li><strong>Moon Illumination:</strong> {{ day.moon_illumination }}%</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Hourly Forecast Accordion -->
+    {% if hourly %}
+    <h2 class="text-center my-4">Hourly Forecast</h2>
+    <div class="accordion" id="hourlyForecast">
+        {% for hour in data.hourly_forecast %}
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="hourHeading{{ loop.index }}">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#hourCollapse{{ loop.index }}" aria-expanded="false"
+                        aria-controls="hourCollapse{{ loop.index }}">
+                    {{ hour.time }} - {{ hour.condition }}
+                </button>
+            </h2>
+            <div id="hourCollapse{{ loop.index }}" class="accordion-collapse collapse"
+                 aria-labelledby="hourHeading{{ loop.index }}" data-bs-parent="#hourlyForecast">
+                <div class="accordion-body">
+                    <img src="{{ hour.icon }}" alt="{{ hour.condition }}" class="me-2">
+                    <ul class="list-unstyled">
+                        <li><strong>Temperature:</strong> {{ hour.temp_c }}°C ({{ hour.temp_f }}°F)</li>
+                        <li><strong>Wind:</strong> {{ hour.wind_kph }} kph ({{ hour.wind_mph }} mph)</li>
+                        <li><strong>Wind Direction:</strong> {{ hour.wind_direction }}</li>
+                        <li><strong>Humidity:</strong> {{ hour.humidity }}%</li>
+                        <li><strong>Cloud Cover:</strong> {{ hour.cloud }}%</li>
+                        <li><strong>Precipitation:</strong> {{ hour.precip_mm }} mm</li>
+                        <li><strong>Pressure:</strong> {{ hour.pressure_mb }} mb</li>
+                        <li><strong>UV Index:</strong> {{ hour.uv }}</li>
+                        <li><strong>Visibility:</strong> {{ hour.visibility_km }} km</li>
+                        <li><strong>Heat Index:</strong> {{ hour.heat_index_c }}°C ({{ hour.heat_index_f }}°F)</li>
+                        <li><strong>Gust:</strong> {{ hour.gust_kph }} kph ({{ hour.gust_mph }} mph)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+</div>
+
+{% endblock extension %}
