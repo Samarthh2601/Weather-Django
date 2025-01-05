@@ -113,6 +113,7 @@ class Formatter:
         
         return response
 
+    @staticmethod
     def format_astronomy_response(data: dict) -> dict:
         formatted_data = {
             "location": data['location']['name'],
