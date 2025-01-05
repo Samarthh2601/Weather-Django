@@ -1,0 +1,13 @@
+{% extends 'weather_app/base.html' %}
+
+{% block content %}
+<div class="container text-center py-5">
+    <h1 class="display-4 fw-bold text-primary mb-4">Weather App</h1>
+    
+    <div class="d-flex justify-content-center gap-3">
+      <a href="{% url 'current' %}" class="btn btn-primary btn-lg">Current</a>
+      <a href="{% url 'forecast' %}" class="btn btn-success btn-lg">Forecast</a>
+      <a href="{% url 'astronomy' %}" class="btn btn-info btn-lg text-white">Astronomy</a>
+    </div>
+</div>
+{% endblock %}

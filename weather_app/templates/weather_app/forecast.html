@@ -2,6 +2,7 @@
 
 {% block form_fields %}
 
+<div>
 <input type="checkbox" id="current" name="current">
     <label for="current">Current</label>
 </div>
@@ -12,5 +13,5 @@
 <div>
     <input type="number" id="days" name="days" min="1" max="10">
     <label for="days">Number of days (1-10)</label> <br>
-
-    {% endblock form_fields %}
+</div>
+{% endblock form_fields %}

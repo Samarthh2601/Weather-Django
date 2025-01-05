@@ -6,7 +6,10 @@ import requests
 from django.contrib import messages
 import json
 
-def weather(request):
+def home(request):
+    return render(request, "weather_app/home.html")
+
+def current(request):
     if request.method == 'GET':
         return render(request, "weather_app/weather.html")
 
@@ -15,7 +18,7 @@ def weather(request):
         data = WeatherHandler(city).get_weather()
         if data is None:
             messages.error(request, "City not found")
-            return redirect('weather')
+            return redirect('current')
         return render(request, "weather_app/current.html", {'current_data': data})
 
 def forecast(request):
