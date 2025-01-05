@@ -3,11 +3,12 @@
 {% block content %}
 
     <h1>Weather</h1>
-    <p>Enter a city name to get the weather</p>
+    <p>Enter a city name</p>
 
     <form method="POST">
         {% csrf_token %}
-        <input type="text" name="city" placeholder="Enter city name">
+        <input type="text" name="city" placeholder="Enter city name"> <br>
+        {% block form_fields %}{% endblock form_fields %}
         <button type="submit">Submit</button>
     </form>
 

@@ -18,7 +18,7 @@ def weather(request):
             return redirect('weather')
         return render(request, "weather_app/current.html", {'current_data': data})
 
-def get_forecast(request):
+def forecast(request):
     if request.method == 'GET':
         return render(request, "weather_app/forecast.html")
 
@@ -34,3 +34,16 @@ def get_forecast(request):
             messages.error(request, "City not found")
             return redirect('forecast')
         return render(request, "weather_app/forecast_out.html", {'data': data, "current_data": data.get("current"), "hourly": data.get("hourly_forecast")})
+
+def astronomy(request):
+    if request.method == 'GET':
+        return render(request, "weather_app/weather.html")
+
+    if request.method == 'POST':
+        city = request.POST.get('city')
+        data = WeatherHandler(city).get_astronomy()
+        print(data)
+        if data is None:
+            messages.error(request, "City not found")
+            return redirect('astronomy')
+        return render(request, "weather_app/astronomy_out.html", {'data': data})

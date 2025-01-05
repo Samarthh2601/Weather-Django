@@ -1,0 +1,32 @@
+{% extends 'weather_app/base.html' %}
+
+{% block content %}
+    
+<div class="container">
+    <div class="card weather-card">
+        
+        <div class="card-header text-center">
+            <h2>Current Weather Information</h2>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item"><strong>Location:</strong> {{data.location}}</li>
+                <li class="list-group-item"><strong>Region:</strong> {{data.region}}</li>
+                <li class="list-group-item"><strong>Local Time:</strong> {{data.time}}</li>
+                <li class="list-group-item"><strong>Time Zone:</strong> {{data.timezone}}</li>
+                <li class="list-group-item"><strong>Latitude:</strong> {{data.latitude}}</li>
+                <li class="list-group-item"><strong>Longitude:</strong> {{data.longitude}}</li>
+                <li class="list-group-item"><strong>Sunrise:</strong> {{data.sunrise}}</li>
+                <li class="list-group-item"><strong>Sunset:</strong> {{data.sunset}}</li>
+                <li class="list-group-item"><strong>Moonrise:</strong> {{data.moonrise}}</li>
+                <li class="list-group-item"><strong>Moonset:</strong> {{data.moonset}}</li>
+                <li class="list-group-item"><strong>Moon Phase:</strong> {{data.moon_phase}}</li>
+                <li class="list-group-item"><strong>Moon Illumination:</strong> {{data.moon_illumination}}</li>
+                <li class="list-group-item"><strong>Is Moon up:</strong> {{data.is_moon_up}}</li>
+                <li class="list-group-item"><strong>Is Sun up:</strong> {{data.is_sun_up}}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

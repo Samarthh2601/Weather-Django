@@ -113,6 +113,25 @@ class Formatter:
         
         return response
 
+    def format_astronomy_response(data: dict) -> dict:
+        formatted_data = {
+            "location": data['location']['name'],
+            "region": data['location']['region'],
+            "time": data['location']['localtime'],
+            "timezone": data['location']['tz_id'],
+            "latitude": data['location']['lat'],
+            "longitude": data['location']['lon'],
+            "sunrise": data['astronomy']['astro']['sunrise'],
+            "sunset": data['astronomy']['astro']['sunset'],
+            "moonrise": data['astronomy']['astro']['moonrise'],
+            "moonset": data['astronomy']['astro']['moonset'],
+            "moon_phase": data['astronomy']['astro']['moon_phase'],
+            "moon_illumination": data['astronomy']['astro']['moon_illumination'],
+            "is_moon_up": bool(data['astronomy']['astro']['is_moon_up']),
+            "is_sun_up": bool(data['astronomy']['astro']['is_sun_up'])
+        }
+        return formatted_data
+
 class WeatherHandler:
     def __init__(self, city: str):
         self.city = city
@@ -132,20 +151,11 @@ class WeatherHandler:
         data = response.json()
         return Formatter.format_forecast_response(data, current=current, hourly_forecast=hourly_forecast)
 
-    def get_history(self) -> dict | None:
-        url = f"{settings.WEATHER_BASE_URL}/history.json?key={API_KEY}&q={self.city}&dt=2021-07-01"
-        response = requests.get(url)
-        if response.status_code != 200:
-            return None
-        data = response.json()
-        return data
-
-
     def get_astronomy(self) -> dict | None:
         url = f"{settings.WEATHER_BASE_URL}/astronomy.json?key={API_KEY}&q={self.city}"
         response = requests.get(url)
         if response.status_code != 200:
             return None
         data = response.json()
-        return data
+        return Formatter.format_astronomy_response(data)
 
